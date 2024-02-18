@@ -27,7 +27,7 @@ class Game:
         self.green_max = max([ d.green for d in self.draw_list ])
         self.blue_max = max([ d.blue for d in self.draw_list ])
     
-    def add_draw(self, draw : Draw):
+    def add_draw(self, draw : Draw) -> None:
         self.draw_list.append(draw)
         self.red_max = max([self.red_max, draw.red])
         self.green_max = max([self.green_max, draw.green])
@@ -36,7 +36,7 @@ class Game:
     def __repr__(self) -> str:
         return f"\nid {self.id};\t[{self.red_max}, {self.green_max}, {self.blue_max}]"
     
-    def is_valid(self, red_max : int, green_max : int, blue_max : int):
+    def is_valid(self, red_max : int, green_max : int, blue_max : int) -> bool:
         return ( self.red_max <= red_max ) \
             &  ( self.green_max <= green_max ) \
             &  ( self.blue_max <= blue_max )
@@ -44,7 +44,7 @@ class Game:
     def get_id(self) -> int:
         return self.id
     
-    def power(self):
+    def power(self) -> int:
         return self.red_max * self.green_max * self.blue_max
 
 
