@@ -1,0 +1,25 @@
+# Problem notes, thought proces and pseudo code for solving
+
+Schematic - static for all numbers
+symbol is anything other than '.'
+is a number also a symbol?
+
+1. Find all numbers in schematic
+
+Number attributes:
+- number value
+- location in schematic:
+  * line number
+  * start index (in the line)
+  * end index (in the line)
+- is part number?
+
+for number in numbers_list:
+    check if number is part number:
+        is there a symbol before number.start?
+        is there a symbol after number.end?
+        is there a symbol in line above number, in range(start-1, end+1)?
+        is there a symbol in line below number, in range(start-1, end+1)?
+    set number.is_part_num
+
+sum all numbers that are part_num
