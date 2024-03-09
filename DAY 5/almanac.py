@@ -135,6 +135,7 @@ def update_seeds(seed_list : list[Seed], lines) -> None:
         if update_flags[ii] == 0:
             seed.location = seed.humidity
 
+
 if __name__ == "__main__":
 
     input_file  = "./DAY 5/input.txt"
@@ -154,6 +155,7 @@ if __name__ == "__main__":
     update_seeds(seed_list, lines[2:])
     print(min( [seed.location for seed in seed_list] ))
 
+    ### This part two solution probably works, but run time is extremely long (especially compared to solution using ranges)
     # # part two
     # line_gen = (line for line in lines)
     # # list of seeds
