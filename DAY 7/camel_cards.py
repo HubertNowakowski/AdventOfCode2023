@@ -7,7 +7,7 @@ class Hand:
         'A': 14,
         'K': 13,
         'Q': 12,
-        'J': 11,
+        # 'J': 11, # his is now a JOKER
         'T': 10,
         '9': 9,
         '8': 8,
@@ -17,6 +17,7 @@ class Hand:
         '4': 4,
         '3': 3,
         '2': 2,
+        'J': 1, # JOKER is last in order of cards
         'None': -1
     }
 
@@ -41,6 +42,10 @@ class Hand:
         self.second_card_count = 0
         
         for letter in Hand.CARD_DICT.keys():
+            #adding exception for the jokers, so i dont get pairs of jokers
+            if letter == 'J':
+                continue
+
             count =cards.count(letter)
             if count > self.first_card_count:
                 self.second_card_count = self.first_card_count
@@ -51,6 +56,10 @@ class Hand:
             elif count > self.second_card_count:
                 self.second_card_count = count
                 self.second_card = letter
+        # before setting the hand_type we need to add JOKERS to first card (making the hand better)
+        # but not if Jokers are the most occuring card 
+        if self.first_card != 'J':
+            self.first_card_count += cards.count('J')
 
         if self.first_card_count == 5: self.hand_type = "5ofaKind"
         elif self.first_card_count == 4: self.hand_type = "4ofaKind"
@@ -85,9 +94,7 @@ if __name__ == "__main__":
     input_file  = "./DAY 7/input.txt"
     with open(input_file, "r") as f:
         lines = f.readlines()
-
-    # lines = lines[154:320]
-    # hands = [Hand(sl[0], int(sl[1])) for l in lines for sl in l.strip().split(' ')]
+        
     hands = [Hand(x[0], int(x[1])) for x in (l.strip().split(' ') for l in lines )]
     # print(hands)
 
