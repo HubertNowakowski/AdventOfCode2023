@@ -14,6 +14,7 @@ if __name__ == "__main__":
     for ii, line in enumerate(lines):
         # print(f"## {ii} ##")
         sequence = np.fromstring(line, dtype=int, sep=' ')
+        # print(sequence)
         prediction = 0
         
         seq_list = []
@@ -26,5 +27,26 @@ if __name__ == "__main__":
         # print(seq_list)
         # print(ii, prediction)
         sum_predictions += prediction
+    print(f"Sum of predictions: {sum_predictions}")
 
+    # part 2
+    sum_predictions = 0
+    for ii, line in enumerate(lines):
+        # print(f"## {ii} ##")
+        sequence = np.fromstring(line, dtype=int, sep=' ')
+        
+        sequence = sequence[::-1]
+        # print(sequence)
+        prediction = 0
+
+        seq_list = []
+        while any(sequence) != 0:
+            seq_list.append(sequence)
+            # print(sequence)
+            prediction += sequence[-1]
+            sequence = np.diff(sequence)
+            # if sequence[-1] == 5: print(ii)
+        # print(seq_list)
+        # print(ii, prediction)
+        sum_predictions += prediction
     print(f"Sum of predictions: {sum_predictions}")
